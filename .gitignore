@@ -1,7 +1,5 @@
 node_modules/
 .env
-public/users/
 core.*
 public/test.html
-# public/assets/
 public/dump/
