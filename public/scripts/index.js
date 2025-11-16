@@ -269,6 +269,20 @@ $(document).ready(function(){
     })
     //------------------------------------------------------------------------------------------------------------
 
+    $(".btn-toggle-password-login").click(function(){
+        let txtPwdSignup = $("#" + this.getAttribute("aria-controls"));
+        let iconToggle = $("#" + this.getAttribute("aria-describedby"));
+
+        if(txtPwdSignup.prop("type") == "password") {
+            txtPwdSignup.prop("type", "text");
+            iconToggle.removeClass("fa-eye").addClass("fa-eye-slash");
+        } else if(txtPwdSignup.prop("type") == "text") {
+            txtPwdSignup.prop("type", "password");
+            iconToggle.removeClass("fa-eye-slash").addClass("fa-eye");
+        }
+    })
+    //------------------------------------------------------------------------------------------------------------
+
     $("#login").click(function(){ // function to reset signup modal on button click
         // resetting input fields
         $("#txtEmailLogin").val("");
