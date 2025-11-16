@@ -40,6 +40,11 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
+    <style>
+      section[id]{
+        scroll-margin-top: 120px;
+      }
+    </style>
 
     <title>SeekerLink</title>
   </head>
@@ -92,9 +97,6 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link me-md-2" href="/#dev-info">Developer</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link me-md-2" href="/#reach-us">Reach Us</a>
               </li>
             </ul>
             <div class="d-flex">
@@ -277,7 +279,7 @@
     <!-- TODO : find good pic for this^ -->
 
     <!-- MEET THE DEVELOPERS  -->
-  <section class="bg-light py-5 text-dark" id="team-section">
+  <section class="bg-light py-5 text-dark" id="dev-info">
     <div class="container text-center">
 
       <h2 class="fw-bold display-5 mb-5 text-dark">Meet the Minds Behind This Platform</h2>
@@ -334,6 +336,36 @@
         </div>
       </div>
   </section>
+
+  <!-- FOOTER -->
+  <footer class="py-3 bg-white border-top mt-4">
+      <div class="container border-top d-flex flex-wrap justify-content-between align-items-center py-3 my-2">
+        <div class="col-md-4 d-flex align-items-center">
+          <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1" aria-label="Bootstrap">
+            <img
+              src="assets/logo.png"
+              alt="Logo"
+              width="40"
+              height="40"
+              class="me-2 border border-dark rounded-circle shadow-sm"
+            />
+          </a>
+          <span class="mb-3 mb-md-0 text-body-secondary">&copy;2025 Company, Inc</span>
+        </div>
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex" style="font-size: 24px;">
+          <li class="ms-3">
+            <a class="text-body-secondary" href="https://www.linkedin.com/in/gokulmittal/" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin"></i>
+            </a>
+          </li>
+          <li class="ms-3">
+            <a class="text-body-secondary" href="https://github.com/DracoRooks/SeekerLink" aria-label="GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+  </footer>
 
     <!-- SIGNUP/LOGIC MODALS -->
     <div
@@ -555,35 +587,5 @@
         </div>
       </div>
     </div>
-
-    <!-- FOOTER -->
-    <footer class="py-3 bg-white border-top mt-4">
-      <div class="container border-top d-flex flex-wrap justify-content-between align-items-center py-3 my-2">
-        <div class="col-md-4 d-flex align-items-center">
-          <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1" aria-label="Bootstrap">
-            <img
-              src="assets/logo.png"
-              alt="Logo"
-              width="40"
-              height="40"
-              class="me-2 border border-dark rounded-circle shadow-sm"
-            />
-          </a>
-          <span class="mb-3 mb-md-0 text-body-secondary">&copy;2025 Company, Inc</span>
-        </div>
-        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex" style="font-size: 24px;">
-          <li class="ms-3">
-            <a class="text-body-secondary" href="https://www.linkedin.com/in/gokulmittal/" aria-label="LinkedIn">
-              <i class="fa-brands fa-linkedin"></i>
-            </a>
-          </li>
-          <li class="ms-3">
-            <a class="text-body-secondary" href="https://github.com/DracoRooks/SeekerLink" aria-label="GitHub">
-              <i class="fa-brands fa-github"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </footer>
   </body>
 </html>
