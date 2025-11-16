@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -36,8 +36,12 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
 
-    <title>Sports Website</title>
+    <title>SeekerLink</title>
   </head>
   <body
     class="bg-light text-dark"
@@ -81,16 +85,16 @@
           <div class="collapse navbar-collapse fs-5" id="indexNavbarContent">
             <ul class="navbar-nav mx-auto">
               <li class="nav-item">
-                <a class="nav-link me-md-2" href="#our-services">Services</a>
+                <a class="nav-link me-md-2" href="/#our-services">Services</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link me-md-2" href="#our-mission">Our Mission</a>
+                <a class="nav-link me-md-2" href="/#our-mission">Our Mission</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link me-md-2" href="#dev-info">Developer</a>
+                <a class="nav-link me-md-2" href="/#dev-info">Developer</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link me-md-2" href="#reach-us">Reach Us</a>
+                <a class="nav-link me-md-2" href="/#reach-us">Reach Us</a>
               </li>
             </ul>
             <div class="d-flex">
@@ -118,42 +122,33 @@
       </nav>
     </header>
 
-    <!-- INTRODUCTION SECTOR -->
+    <!-- INTRODUCTION SECTION -->
     <section
       class="hero d-flex align-items-center bg-gradient text-dark"
       id="home"
-      style="padding-top: 120px; padding-bottom: 40px"
+      style="padding-top: 120px;"
     >
       <div class="container">
         <div class="row align-items-center">
           <!-- Left Column -->
-          <div class="col-md-6 text-center text-md-start" data-aos="fade-right">
+          <div class="col-md-6 text-center animate__animated animate__fadeInLeft" data-aos="fade-right">
             <!-- Heading -->
             <h1 class="display-4 fw-bold mt-4">
               Welcome to <img src="assets/title.png" alt="Title" width="300" />
             </h1>
-            <!-- Logo -->
-            <img
-              src="assets/logo.png"
-              alt="Logo"
-              width="100"
-              class="mb-3 rounded-circle shadow border border-dark"
-            />
             <!-- AutoTyped -->
             <p class="lead text-secondary mt-3" style="height: 30px">
               <span>{{indexMainDynamicText}}</span>
-              <!-- <i class="fa-solid fa-i-cursor" nd-model="iCursor" style="margin-left: -4px;"></i> -->
-              <!-- <span>|</span> -->
             </p>
             <a
-              href="#services-section"
+              href="#our-services"
               class="btn btn-dark btn-lg mt-4 rounded-pill shadow"
               >Get Started</a
             >
           </div>
 
           <!-- Right Column -->
-          <div class="col-md-6 text-center">
+          <div class="col-md-6 text-center animate__animated animate__fadeInRight">
             <div
               class="position-relative d-inline-block"
               style="width: 400px; height: 400px"
@@ -174,7 +169,7 @@
     <!-- OUR SERVICES SECTION -->
     <section
       class="hero my-5 d-flex align-items-center bg-gradient text-dark"
-      id="home"
+      id="our-services"
     >
       <div class="container">
         <h2 class="text-center display-5 fw-bold text-dark mb-3">
@@ -182,10 +177,10 @@
         </h2>
 
         <div
-          id="carouselExampleAutoplaying"
+          id="carouselAutoplaying"
           class="carousel slide"
           data-bs-ride="carousel"
-          data-bs-interval="2000"
+          data-bs-interval="3500"
         >
           <div class="carousel-inner rounded-4 shadow-lg bg-white">
             <div class="carousel-item">
@@ -239,9 +234,106 @@
               </div>
             </div>
           </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselAutoplaying"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon bg-dark rounded-circle p-2" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+    
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselAutoplaying"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon bg-dark rounded-circle p-2" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
       </div>
     </section>
+    <!-- TODO : find good assets for crousel -->
+
+    <!-- OUR MISSION -->
+    <section class="py-5 bg-info bg-opacity-10 text-dark" id="our-mission">
+      <div class="container">
+        <div class="row align-items-center">
+  
+          <div class="col-md-4 mb-4 mb-md-0 text-center animate__animated animate__fadeInLeft">
+            <img src="dump/our_mission3.png" alt="Players and Sports" class="img-fluid rounded-4 shadow-lg">
+          </div>
+  
+          <div class="col-md-8 animate__animated animate__fadeInRight">
+            <h2 class="display-5 fw-bold text-dark mb-3">Our Mission</h2>
+            <p class="lead text-secondary">
+              We are on a mission to empower athletes, streamline sports events, and build a future where every player
+              gets a fair chance to shine — regardless of background or boundaries.
+            </p>
+            <p class="text-muted">
+              By bridging the gap between players and organizers through smart tech and smooth systems, we're creating a
+              platform that celebrates talent, simplifies tournaments, and champions the spirit of the game.
+            </p>
+          </div>
+          <hr class="border-dark">
+        </div>
+      </div>
+    </section>
+    <!-- TODO : find good pic for this^ -->
+
+    <!-- MEET THE DEVELOPERS  -->
+  <section class="bg-light py-5 text-dark" id="team-section">
+    <div class="container text-center">
+
+      <h2 class="fw-bold display-5 mb-5 text-dark">Meet the Minds Behind This Platform</h2>
+
+      <div class="text-start mb-4">
+        <h4 class="text-uppercase text-secondary fw-bold border-start border-secondary border-4 ps-3">Under the
+          Guidance
+          Of</h4>
+      </div>
+
+      <div class="row align-items-center mb-5">
+        <div class="col-md-3 text-center mb-3 mb-md-0">
+          <img src="assets/rajeshsir.png" alt="Rajesh Bansal"
+            class="img-fluid rounded-circle shadow-lg border border-secondary border-3"
+            style="width: 180px; height: 180px; object-fit: cover;">
+        </div>
+        <div class="col-md-9 text-start">
+          <h4 class="fw-bold text-dark">Er. Rajesh Bansal</h4>
+          <p class="text-muted mb-1">Founder – Bangalore Computer Education</p>
+          <p class="text-secondary fs-6">
+            With <strong>25 years</strong> of experience in Training & Development, Mr. Bansal is the visionary
+            founder
+            of
+            <a href="https://www.realjavaonline.com" target="_blank" rel="noopener noreferrer"
+              class="text-decoration-none text-dark"><strong>RealJavaOnline.com</strong></a>. Passionate about Java
+            (J2SE, J2EE), C++, PHP, Python, AngularJS, Android, and MERN Stack.<br><br>
+            Dive deeper with his book <a
+              href="https://www.amazon.in/Real-Programmers-M-Tech-B-Tech-students/dp/9351968243" target="_blank"
+              rel="noopener noreferrer" class="text-decoration-none text-dark"><strong>"Real Java"</strong></a>.
+          </p>
+          <p class="mb-0 text-dark"><strong>Email:</strong> bcebti@gmail.com</p>
+          <p class="mb-0 text-dark"><strong>Contact:</strong> 98722-46056</p>
+        </div>
+      </div>
+
+      <div class="text-start mb-4">
+        <h4 class="text-uppercase text-secondary fw-bold border-start border-secondary border-4 ps-3">Developed By
+        </h4>
+      </div>
+
+      <div class="row align-items-center mb-5">
+        <div class="col-md-3 text-center mb-3 mb-md-0 order-md-1 order-2">
+          <img src="assets/self.png" alt="Gokul Mittal"
+            class="img-fluid rounded-circle shadow-lg border border-secondary border-3"
+            style="width: 180px; height: 180px; object-fit: cover;">
+        </div>
+        <div class="col-md-9 text-start order-md-2 order-1">
+          <h4 class="fw-bold mb-2 text-dark">Mr. Gokul Mittal</h4>
+          <p class="text-muted mb-1">Full Stack Developer | Game Dev | Systems Programmer | Linux Enthusiast</p><br>
+          <p class="fs-6 text-muted">
+            Currently pursuing B.Tech in Computer Science and Engineering (specialising in AI and ML) at <strong>Maharaja Ranjit Singh Punjab Technical University</strong>, 
+            collaborates on ML research, and actively builds full-stack projects for social impact.
+          </p>
+        </div>
+      </div>
+  </section>
 
     <!-- SIGNUP/LOGIC MODALS -->
     <div
@@ -465,15 +557,82 @@
     </div>
 
     <!-- FOOTER -->
-    <footer
-      style="
-        width: 100%;
-        line-height: 50px;
-        background-color: cadetblue;
-        color: white;
-      "
-    >
-      Footer
-    </footer>
+    <div class="container bg-white bg-opacity-100">
+      <footer class="py-5">
+        <div class="row">
+          <div class="col-6 col-md-2 mb-3">
+            <h5>Section</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-body-secondary">Home</a>
+              </li>
+              <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-body-secondary">Features</a>
+              </li>
+              <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
+              </li>
+              <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-body-secondary">FAQs</a>
+              </li>
+              <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-body-secondary">About</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-6 col-md-2 mb-3">
+            <h5>Section</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-body-secondary">Home</a>
+              </li>
+              <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-body-secondary">Features</a>
+              </li>
+              <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
+              </li>
+              <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-body-secondary">FAQs</a>
+              </li>
+              <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-body-secondary">About</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-6 col-md-2 mb-3">
+            <h5>Section</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-body-secondary">Home</a>
+              </li>
+              <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-body-secondary">Features</a>
+              </li>
+              <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
+              </li>
+              <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-body-secondary">FAQs</a>
+              </li>
+              <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-body-secondary">About</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-5 offset-md-1 mb-3">
+            <form>
+              <h5>Subscribe to our newsletter</h5>
+              <p>Monthly digest of what's new and exciting from us.</p>
+              <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                <label for="newsletter1" class="visually-hidden">Email address</label>
+                <input id="newsletter1" type="email" class="form-control" placeholder="Email address">
+                <button class="btn btn-primary" type="button">Subscribe</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </footer>
+    </div>
   </body>
 </html>
