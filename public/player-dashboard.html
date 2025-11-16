@@ -33,101 +33,150 @@
 
     <title>Player Dashboard</title>
   </head>
-  <body style="background-color: gainsboro">
-    <header
-      class="mb-3"
-      style="
-        width: 100%;
-        line-height: 50px;
-        background-color: cadetblue;
-        color: white;
-        padding-left: 20px;
-      "
-    >
-      Header
+  <body class="bg-light d-flex flex-column" style="min-height: 100vh;">
+    <header>
+      <nav
+        class="navbar navbar-expand-lg fixed-top shadow-sm bg-white"
+        id="indexNavbar"
+      >
+        <div class="container">
+          <a class="navbar-brand d-flex align-items-center py-3" href="/">
+            <img
+              src="assets/logo.png"
+              alt="Logo"
+              width="50"
+              height="50"
+              class="me-2 border border-dark rounded-circle shadow-sm"
+            />
+            <span class="fw-bold text-black fs-3" style="letter-spacing: 1px; margin-top: 2px; margin-bottom: -2px;"
+              >SeekerLink</span
+            >
+          </a>
+
+          
+        </div>
+      </nav>
     </header>
-    <!-- *************************************************************************************************** -->
-    <div class="container">
-      <div class="row">
-        <div class="col-md-10 mx-auto">
-          <div class="row g-3">
-            <div class="card mx-auto col-md-3">
-              <img src="" class="card-img-top" alt="nopic.jpg" />
-              <div class="card-body">
-                <h5 class="card-title">Player Profile</h5>
-                <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p> -->
-                <a href="/player-profile" class="btn btn-primary">Profile</a>
-              </div>
-            </div>
-            <div class="card mx-auto col-md-3">
-              <img src="" class="card-img-top" alt="nopic.jpg" />
-              <div class="card-body">
-                <h5 class="card-title">Browse Events</h5>
-                <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p> -->
-                <a href="/player-browse-tournament" class="btn btn-primary"
-                  >Profile</a
-                >
-              </div>
-            </div>
-            <div class="card mx-auto col-md-3">
-              <img src="" class="card-img-top" alt="nopic.jpg" />
-              <div class="card-body">
-                <h5 class="card-title">Settings</h5>
-                <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p> -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#playerSettingsModal" id="playerSettings">Settings</button>
+
+    <main class="flex-grow-1" style="margin-top: 120px;">
+      <!-- *************************************************************************************************** -->
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10 mx-auto">
+            <div class="row g-3">
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <div class="card h-100">
+                    <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Player Profile link">
+                    <div class="card-body">
+                      <h5 class="card-title">Player Profile</h5>
+                      <a href="/player-profile" class="btn btn-dark">Profile</a>
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="col-md-4">
+                  <div class="card h-100">
+                    <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Browse Events link">
+                    <div class="card-body">
+                      <h5 class="card-title">Browse Events</h5>
+                      <a href="/player-browse-tournament" class="btn btn-dark">Browse</a>
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="col-md-4">
+                  <div class="card h-100">
+                    <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Open Settings modal">
+                    <div class="card-body">
+                      <h5 class="card-title">Settings</h5>
+                      <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#playerSettingsModal" id="playerSettings">Settings</button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- ********************************   PLAYER SETTINGS MODAL  ******************************** -->
-     <div class="modal fade" id="playerSettingsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="playerSettingsModalTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <form action="/player-settings">
-            <div class="modal-header">
-              <h5 class="modal-title" id="playerSettingsModalLongTitle">Settings</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="mb-3">
-                <label for="txtEmailSettingsPlayer" class="form-label">Email:</label>
-                <div class="input-group">
-                  <input type="text" class="form-control signup-modal-input emailValidate" id="txtEmailSignup" placeholder="example@gmail.com" aria-errormessage="email-validation-signup">
+  
+      <!-- ********************************   PLAYER SETTINGS MODAL  ******************************** -->
+       <div class="modal fade" id="playerSettingsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="playerSettingsModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <form action="/player-settings">
+              <div class="modal-header">
+                <h5 class="modal-title" id="playerSettingsModalLongTitle">Settings</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="mb-3">
+                  <label for="txtEmailSettingsPlayer" class="form-label">Email:</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control signup-modal-input emailValidate" id="txtEmailSignup" placeholder="example@gmail.com" aria-errormessage="email-validation-signup">
+                  </div>
+                  <div class="form-text" id="email-validation-signup"></div>
                 </div>
-                <div class="form-text" id="email-validation-signup"></div>
-              </div>
-              <div class="mb-3">
-                <label for="txtPwdSignup1" class="form-label">Password:</label>
-                <div class="input-group">
-                  <input type="password" class="form-control passwordValidate signup-modal-input" id="txtPwdSignup1" aria-errormessage="password1-validation-signup">
-                  <button class="btn btn-outline-secondary btn-toggle-password-signup" type="button" id="btn-toggle-password1-signup" aria-controls="txtPwdSignup1" aria-describedby="icon-toggle-password1-signup">
-                    <i class="fa-solid fa-eye" id="icon-toggle-password1-signup"></i>
-                  </button>
+                <div class="mb-3">
+                  <label for="txtPwdSignup1" class="form-label">Password:</label>
+                  <div class="input-group">
+                    <input type="password" class="form-control passwordValidate signup-modal-input" id="txtPwdSignup1" aria-errormessage="password1-validation-signup">
+                    <button class="btn btn-outline-secondary btn-toggle-password-signup" type="button" id="btn-toggle-password1-signup" aria-controls="txtPwdSignup1" aria-describedby="icon-toggle-password1-signup">
+                      <i class="fa-solid fa-eye" id="icon-toggle-password1-signup"></i>
+                    </button>
+                  </div>
+                  <div class="form-text" id="password1-validation-signup">We won't share your password!</div>
                 </div>
-                <div class="form-text" id="password1-validation-signup">We won't share your password!</div>
-              </div>
-              <div class="mb-3">
-                <label for="txtPwdSignup2" class="form-label">Re-enter your password:</label>
-                <div class="input-group">
-                  <input type="password" class="form-control passwordValidate signup-modal-input" id="txtPwdSignup2" aria-errormessage="password2-validation-signup">
-                  <button class="btn btn-outline-secondary btn-toggle-password-signup" type="button" id="btn-toggle-password2-signup" aria-controls="txtPwdSignup2" aria-describedby="icon-toggle-password2-signup">
-                    <i class="fa-solid fa-eye" id="icon-toggle-password2-signup"></i>
-                  </button>
+                <div class="mb-3">
+                  <label for="txtPwdSignup2" class="form-label">Re-enter your password:</label>
+                  <div class="input-group">
+                    <input type="password" class="form-control passwordValidate signup-modal-input" id="txtPwdSignup2" aria-errormessage="password2-validation-signup">
+                    <button class="btn btn-outline-secondary btn-toggle-password-signup" type="button" id="btn-toggle-password2-signup" aria-controls="txtPwdSignup2" aria-describedby="icon-toggle-password2-signup">
+                      <i class="fa-solid fa-eye" id="icon-toggle-password2-signup"></i>
+                    </button>
+                  </div>
+                  <div class="form-text" id="password2-validation-signup"></div>
                 </div>
-                <div class="form-text" id="password2-validation-signup"></div>
+              <div class="modal-footer">
+                <div class="d-grid col-md-10 mx-auto">
+                  <button type="button" class="btn btn-dark btn-center" id="AJAXSignup">Update</button>
+                </div>
               </div>
-            <div class="modal-footer">
-              <div class="d-grid col-md-10 mx-auto">
-                <button type="button" class="btn btn-primary btn-center" id="AJAXSignup">Update</button>
-              </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-3 bg-white border-top mt-4">
+      <div class="container border-top d-flex flex-wrap justify-content-between align-items-center py-3 my-2">
+        <div class="col-md-4 d-flex align-items-center">
+          <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1" aria-label="Bootstrap">
+            <img
+              src="assets/logo.png"
+              alt="Logo"
+              width="40"
+              height="40"
+              class="me-2 border border-dark rounded-circle shadow-sm"
+            />
+          </a>
+          <span class="mb-3 mb-md-0 text-body-secondary">&copy;2025 Company, Inc</span>
+        </div>
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex" style="font-size: 24px;">
+          <li class="ms-3">
+            <a class="text-body-secondary" href="https://www.linkedin.com/in/gokulmittal/" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin"></i>
+            </a>
+          </li>
+          <li class="ms-3">
+            <a class="text-body-secondary" href="https://github.com/DracoRooks/SeekerLink" aria-label="GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+  </footer>
   </body>
 </html>

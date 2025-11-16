@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- SCRIPTS -->
@@ -20,9 +20,7 @@
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
     ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"
-    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
     <script src="scripts/admin/admin-manage-organisers.js"></script>
 
     <!-- STYLES -->
@@ -39,58 +37,126 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-</head>
-<body ng-app="AdminManageOrganisersModule" ng-controller="AdminManageOrganisersController" ng-init="fxFetchAllOrganisers();">
-    <header
-      class="mb-3"
-      style="
-        width: 100%;
-        line-height: 50px;
-        background-color: cadetblue;
-        color: white;
-        padding-left: 20px;
-      "
-    >
-      Header
+  </head>
+  <body
+    ng-app="AdminManageOrganisersModule"
+    ng-controller="AdminManageOrganisersController"
+    ng-init="fxFetchAllOrganisers();"
+    class="bg-light d-flex flex-column"
+    style="min-height: 100vh"
+  >
+    <header>
+      <nav
+        class="navbar navbar-expand-lg fixed-top shadow-sm bg-white"
+        id="indexNavbar"
+      >
+        <div class="container">
+          <a class="navbar-brand d-flex align-items-center py-3" href="/">
+            <img
+              src="assets/logo.png"
+              alt="Logo"
+              width="50"
+              height="50"
+              class="me-2 border border-dark rounded-circle shadow-sm"
+            />
+            <span
+              class="fw-bold text-black fs-3"
+              style="letter-spacing: 1px; margin-top: 2px; margin-bottom: -2px"
+              >SeekerLink</span
+            >
+          </a>
+        </div>
+      </nav>
     </header>
-    
-    <div class="container">
-      <h2>List of all organisers:</h2>
-      <table class="table table-hover mt-3">
-        <tr class="text-center">
-          <th>Sr. No.</th>
-          <th>Email</th>
-          <th>Organisation Name</th>
-          <th>Registration Number</th>
-          <th>State</th>
-          <th>Sport</th>
-          <th>Org. Head Name</th>
-          <th>Options</th>
-        </tr>
-        <tr class="text-center" ng-repeat="obj in jsonOrganisersArray">
-          <td>{{$index+1}}</td>
-          <td>{{obj.emailid}}</td>
-          <td>{{obj.organisationName}}</td>
-          <td>{{obj.registrationNumber}}</td>
-          <td>{{obj.state}}</td>
-          <td>{{obj.sports}}</td>
-          <td>{{obj.organisationHeadName}}</td>
-          <td>
-            <div class="dropdown">
-              <button
-                class="btn btn-primary dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              ></button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">View More</a></li>
-                <li><a class="dropdown-item" href="#">Delete</a></li>
-              </ul>
-            </div>
-          </td>
-        </tr>
-      </table>
-    </div>
-</body>
+
+    <main class="flex-grow-1" style="margin-top: 120px">
+      <div class="container">
+        <h2>List of all organisers:</h2>
+        <table class="table table-hover mt-3">
+          <tr class="text-center">
+            <th>Sr. No.</th>
+            <th>Email</th>
+            <th>Organisation Name</th>
+            <th>Registration Number</th>
+            <th>State</th>
+            <th>Sport</th>
+            <th>Org. Head Name</th>
+            <th>Options</th>
+          </tr>
+          <tr class="text-center" ng-repeat="obj in jsonOrganisersArray">
+            <td>{{$index+1}}</td>
+            <td>{{obj.emailid}}</td>
+            <td>{{obj.organisationName}}</td>
+            <td>{{obj.registrationNumber}}</td>
+            <td>{{obj.state}}</td>
+            <td>{{obj.sports}}</td>
+            <td>{{obj.organisationHeadName}}</td>
+            <td>
+              <div class="dropdown">
+                <button
+                  class="btn btn-dark dropdown-toggle"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                ></button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">View More</a></li>
+                  <li><a class="dropdown-item" href="#">Delete</a></li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-3 bg-white border-top mt-4">
+      <div
+        class="container border-top d-flex flex-wrap justify-content-between align-items-center py-3 my-2"
+      >
+        <div class="col-md-4 d-flex align-items-center">
+          <a
+            href="/"
+            class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1"
+            aria-label="Bootstrap"
+          >
+            <img
+              src="assets/logo.png"
+              alt="Logo"
+              width="40"
+              height="40"
+              class="me-2 border border-dark rounded-circle shadow-sm"
+            />
+          </a>
+          <span class="mb-3 mb-md-0 text-body-secondary"
+            >&copy;2025 Company, Inc</span
+          >
+        </div>
+        <ul
+          class="nav col-md-4 justify-content-end list-unstyled d-flex"
+          style="font-size: 24px"
+        >
+          <li class="ms-3">
+            <a
+              class="text-body-secondary"
+              href="https://www.linkedin.com/in/gokulmittal/"
+              aria-label="LinkedIn"
+            >
+              <i class="fa-brands fa-linkedin"></i>
+            </a>
+          </li>
+          <li class="ms-3">
+            <a
+              class="text-body-secondary"
+              href="https://github.com/DracoRooks/SeekerLink"
+              aria-label="GitHub"
+            >
+              <i class="fa-brands fa-github"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+  </body>
 </html>

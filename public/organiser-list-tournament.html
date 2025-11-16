@@ -41,21 +41,35 @@
   <body
     ng-app="organiserListTournamentModule"
     ng-controller="organiserListTournamentController"
+    class="bg-light d-flex flex-column"
+    style="min-height: 100vh"
   >
-    <header
-      style="
-        width: 100%;
-        line-height: 50px;
-        background-color: cadetblue;
-        color: white;
-        padding-left: 20px;
-      "
-    >
-      Header
+    <header>
+      <nav
+        class="navbar navbar-expand-lg fixed-top shadow-sm bg-white"
+        id="indexNavbar"
+      >
+        <div class="container">
+          <a class="navbar-brand d-flex align-items-center py-3" href="/">
+            <img
+              src="assets/logo.png"
+              alt="Logo"
+              width="50"
+              height="50"
+              class="me-2 border border-dark rounded-circle shadow-sm"
+            />
+            <span
+              class="fw-bold text-black fs-3"
+              style="letter-spacing: 1px; margin-top: 2px; margin-bottom: -2px"
+              >SeekerLink</span
+            >
+          </a>
+        </div>
+      </nav>
     </header>
 
-    <!-- ********************************************************************************************************* -->
-    <div class="container bg-white pb-3">
+    <main class="flex-grow-1" style="margin-top: 120px">
+      <div class="container bg-white pb-3">
         <div class="row">
           <div class="col-md-10 mx-auto">
             <form
@@ -260,14 +274,62 @@
               </div>
               <div class="col-md-3 mx-auto justify-content-md-center">
                 <div class="row" style="gap: 2rem">
-                  <button type="submit" class="btn btn-primary col">
-                    Save
-                  </button>
+                  <button type="submit" class="btn btn-dark col">Save</button>
                 </div>
               </div>
             </form>
           </div>
         </div>
-    </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-3 bg-white border-top mt-4">
+      <div
+        class="container border-top d-flex flex-wrap justify-content-between align-items-center py-3 my-2"
+      >
+        <div class="col-md-4 d-flex align-items-center">
+          <a
+            href="/"
+            class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1"
+            aria-label="Bootstrap"
+          >
+            <img
+              src="assets/logo.png"
+              alt="Logo"
+              width="40"
+              height="40"
+              class="me-2 border border-dark rounded-circle shadow-sm"
+            />
+          </a>
+          <span class="mb-3 mb-md-0 text-body-secondary"
+            >&copy;2025 Company, Inc</span
+          >
+        </div>
+        <ul
+          class="nav col-md-4 justify-content-end list-unstyled d-flex"
+          style="font-size: 24px"
+        >
+          <li class="ms-3">
+            <a
+              class="text-body-secondary"
+              href="https://www.linkedin.com/in/gokulmittal/"
+              aria-label="LinkedIn"
+            >
+              <i class="fa-brands fa-linkedin"></i>
+            </a>
+          </li>
+          <li class="ms-3">
+            <a
+              class="text-body-secondary"
+              href="https://github.com/DracoRooks/SeekerLink"
+              aria-label="GitHub"
+            >
+              <i class="fa-brands fa-github"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </footer>
   </body>
 </html>

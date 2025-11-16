@@ -39,61 +39,126 @@
 
     <title>Admin Console</title>
   </head>
-  <body style="background-color: gainsboro">
-    <header
-      class="mb-3"
-      style="
-        width: 100%;
-        line-height: 50px;
-        background-color: cadetblue;
-        color: white;
-        padding-left: 20px;
-      "
-    >
-      Header
+  <body class="bg-light d-flex flex-column" style="min-height: 100vh">
+    <header>
+      <nav
+        class="navbar navbar-expand-lg fixed-top shadow-sm bg-white"
+        id="indexNavbar"
+      >
+        <div class="container">
+          <a class="navbar-brand d-flex align-items-center py-3" href="/">
+            <img
+              src="assets/logo.png"
+              alt="Logo"
+              width="50"
+              height="50"
+              class="me-2 border border-dark rounded-circle shadow-sm"
+            />
+            <span
+              class="fw-bold text-black fs-3"
+              style="letter-spacing: 1px; margin-top: 2px; margin-bottom: -2px"
+              >SeekerLink</span
+            >
+          </a>
+        </div>
+      </nav>
     </header>
-    <div class="container">
-      <div class="row">
-        <div class="col-10 mx-auto">
-          <div class="row g-3">
-            <div
-              class="card mx-auto col-md-3"
-              style="width: 18rem; float: left"
-            >
-              <img src="" class="card-img-top" alt="nopic.jpg" />
-              <div class="card-body">
-                <h5 class="card-title">Manage Users</h5>
-                <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p> -->
-                <a href="/admin-manage-users" class="btn btn-primary">Profile</a>
+
+    <main class="flex-grow-1" style="margin-top: 120px">
+      <div class="container">
+        <div class="row">
+          <div class="col-10 mx-auto">
+            <div class="row g-3">
+              <div
+                class="card mx-auto col-md-3"
+                style="width: 18rem; float: left"
+              >
+                <img src="" class="card-img-top" alt="nopic.jpg" />
+                <div class="card-body">
+                  <h5 class="card-title">Manage Users</h5>
+                  <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p> -->
+                  <a href="/admin-manage-users" class="btn btn-dark">Profile</a>
+                </div>
               </div>
-            </div>
-            <div
-              class="card mx-auto col-md-3"
-              style="width: 18rem; float: left"
-            >
-              <img src="" class="card-img-top" alt="nopic.jpg" />
-              <div class="card-body">
-                <h5 class="card-title">Expand Players</h5>
-                <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p> -->
-                <a href="/admin-manage-players" class="btn btn-primary">Profile</a>
+              <div
+                class="card mx-auto col-md-3"
+                style="width: 18rem; float: left"
+              >
+                <img src="" class="card-img-top" alt="nopic.jpg" />
+                <div class="card-body">
+                  <h5 class="card-title">Expand Players</h5>
+                  <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p> -->
+                  <a href="/admin-manage-players" class="btn btn-dark"
+                    >Profile</a
+                  >
+                </div>
               </div>
-            </div>
-            <div
-              class="card mx-auto col-md-3"
-              style="width: 18rem; float: left"
-            >
-              <img src="" class="card-img-top" alt="nopic.jpg" />
-              <div class="card-body">
-                <h5 class="card-title">Expand Organisations</h5>
-                <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p> -->
-                <a href="/admin-manage-organisers" class="btn btn-primary"
-                  >Profile</a
-                >
+              <div
+                class="card mx-auto col-md-3"
+                style="width: 18rem; float: left"
+              >
+                <img src="" class="card-img-top" alt="nopic.jpg" />
+                <div class="card-body">
+                  <h5 class="card-title">Expand Organisations</h5>
+                  <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p> -->
+                  <a href="/admin-manage-organisers" class="btn btn-dark"
+                    >Profile</a
+                  >
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-3 bg-white border-top mt-4">
+      <div
+        class="container border-top d-flex flex-wrap justify-content-between align-items-center py-3 my-2"
+      >
+        <div class="col-md-4 d-flex align-items-center">
+          <a
+            href="/"
+            class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1"
+            aria-label="Bootstrap"
+          >
+            <img
+              src="assets/logo.png"
+              alt="Logo"
+              width="40"
+              height="40"
+              class="me-2 border border-dark rounded-circle shadow-sm"
+            />
+          </a>
+          <span class="mb-3 mb-md-0 text-body-secondary"
+            >&copy;2025 Company, Inc</span
+          >
+        </div>
+        <ul
+          class="nav col-md-4 justify-content-end list-unstyled d-flex"
+          style="font-size: 24px"
+        >
+          <li class="ms-3">
+            <a
+              class="text-body-secondary"
+              href="https://www.linkedin.com/in/gokulmittal/"
+              aria-label="LinkedIn"
+            >
+              <i class="fa-brands fa-linkedin"></i>
+            </a>
+          </li>
+          <li class="ms-3">
+            <a
+              class="text-body-secondary"
+              href="https://github.com/DracoRooks/SeekerLink"
+              aria-label="GitHub"
+            >
+              <i class="fa-brands fa-github"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </footer>
   </body>
 </html>
