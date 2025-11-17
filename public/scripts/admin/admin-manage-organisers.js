@@ -1,6 +1,6 @@
 angular.module("AdminManageOrganisersModule", []).controller("AdminManageOrganisersController", function($scope, $http){
-
     // alert("hello");
+    $scope.activeUserAdminEmail = localStorage.getItem("activeUser");
     $scope.jsonOrganisersArray = [];
 
     $scope.fxFetchAllOrganisers = function() {

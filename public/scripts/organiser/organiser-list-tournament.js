@@ -42,4 +42,6 @@ angular.module("organiserListTournamentModule", []).controller("organiserListTou
             alert("ALERT::fxSaveData_ORG_PROFILE::ERROR " + err.message);
         }
     }
+
+    $scope.activeUserOrganiserEmail = localStorage.getItem("activeUser");
 });

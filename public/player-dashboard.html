@@ -14,6 +14,12 @@
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
     ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"
+      integrity="sha512-KZmyTq3PLx9EZl0RHShHQuXtrvdJ+m35tuOiwlcZfs/rE7NZv29ygNA8SFCkMXTnYZQK2OX0Gm2qKGfvWEtRXA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script src="scripts/player/player-dashboard.js"></script>
 
     <!-- STYLES -->
@@ -33,7 +39,12 @@
 
     <title>Player Dashboard</title>
   </head>
-  <body class="bg-light d-flex flex-column" style="min-height: 100vh;">
+  <body 
+    class="bg-light d-flex flex-column"
+    style="min-height: 100vh;"
+    ng-app="PlayerDashboardModule"
+    ng-controller="PlayerDashboardController"
+  >
     <header>
       <nav
         class="navbar navbar-expand-lg fixed-top shadow-sm bg-white"
@@ -53,7 +64,11 @@
             >
           </a>
 
-          
+          <div class="ms-auto d-flex align-items-center">
+        <span class="text-secondary d-none d-md-inline">Welcome, </span>
+        <span class="fw-bold text-dark ms-1">{{activeUserPlayerEmail}}</span>
+        <span class="text-dark d-none d-md-inline">!</span>
+      </div>
         </div>
       </nav>
     </header>
@@ -70,6 +85,9 @@
                     <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Player Profile link">
                     <div class="card-body">
                       <h5 class="card-title">Player Profile</h5>
+                      <p class="card-text text-secondary small">
+                        Scout for upcoming tournaments in your city, challenge rivals, and claim your victory.
+                      </p>
                       <a href="/player-profile" class="btn btn-dark">Profile</a>
                     </div>
                   </div>

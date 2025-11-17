@@ -3,6 +3,8 @@ const controller = module.controller("PlayerBrowseTournamentController", functio
 
     fxDistinctSports();
     fxDistinctCities();
+
+    $scope.activeUserPlayerEmail = localStorage.getItem("activeUser");
     
     // *****************************    FETCHING FILTERED EVENTS    *****************************
 

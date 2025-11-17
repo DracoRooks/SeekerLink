@@ -3,3 +3,4 @@ node_modules/
 core.*
 public/test.html
 public/dump/
+public/users/

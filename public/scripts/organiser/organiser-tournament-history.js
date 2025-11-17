@@ -1,4 +1,6 @@
 angular.module("OrganizerTournamentHistoryModule", []).controller("OrganizerTournamentHistoryController", function($scope, $http){
+    $scope.activeUserOrganiserEmail = localStorage.getItem("activeUser");
+
     $scope.jsonArray = [];
 
     $scope.fxFetchAllTournaments = function() {

@@ -1,6 +1,7 @@
 angular.module("AdminManageUsersModule", []).controller("AdminManageUsersController", function($scope, $http){
-
     // alert("hello");
+    $scope.activeUserAdminEmail = localStorage.getItem("activeUser");
+
     $scope.jsonUsersArray = [];
 
     $scope.fxFetchAllUsers = function() {

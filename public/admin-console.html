@@ -39,7 +39,12 @@
 
     <title>Admin Console</title>
   </head>
-  <body class="bg-light d-flex flex-column" style="min-height: 100vh">
+  <body 
+    ng-app="AdminConsoleModule"
+    ng-controller="AdminConsoleController"
+    class="bg-light d-flex flex-column" 
+    style="min-height: 100vh"
+  >
     <header>
       <nav
         class="navbar navbar-expand-lg fixed-top shadow-sm bg-white"
@@ -60,6 +65,11 @@
               >SeekerLink</span
             >
           </a>
+          <div class="ms-auto d-flex align-items-center">
+            <span class="text-secondary d-none d-md-inline">Welcome, </span>
+            <span class="fw-bold text-dark ms-1">{{activeUserAdminEmail}}</span>
+            <span class="text-dark d-none d-md-inline">!</span>
+          </div>
         </div>
       </nav>
     </header>
