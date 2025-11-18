@@ -172,6 +172,47 @@ website.get("/player-profile", function(req, res){
     const path = __dirname + "/public/player-profile.html";
     res.sendFile(path);
 })
+// *********** GEN AI ***************
+async function genAIPrompt(imgurl) {
+    const myprompt = "Read the text on picture and tell all the information in adhaar card and give output STRICTLY in JSON format {adhaar_number:'', name:'', gender:'', dob: ''}. Dont give output as string."   
+    const imageResp = await fetch(imgurl).then((response) => response.arrayBuffer());
+
+    const result = await model.generateContent([{
+        inlineData: {
+            data: Buffer.from(imageResp).toString("base64"),
+            mimeType: "image/jpeg",
+        },
+    },myprompt,]);
+
+    console.log(result.response.text())
+    const cleaned = result.response.text().replace(/```json|```/g, '').trim();
+    const jsonData = JSON.parse(cleaned);
+    console.log(jsonData);
+
+    return jsonData;
+
+}
+
+website.post("/player-adhaar-reader", async function (req, resp) {
+    let fileName;
+    if (req.files != null) {
+        fileName = req.files.imggg.name;
+        let locationToSave = __dirname + "/public/users/" + fileName;//full ile path
+        
+        req.files.imggg.mv(locationToSave);//saving file in uploads folder
+        
+        //saving ur file/pic on cloudinary server
+        try{
+            await cloudinary.uploader.upload(locationToSave).then(async function (picUrlResult) {            
+                let jsonData=await genAIPrompt( picUrlResult.url);    
+                resp.send(jsonData);
+            });
+        } catch(err) {
+            resp.send(err.message)
+        }
+    }
+})
+// ************************************************
 website.get("/player-browse-tournament", function(req, res){
     const path = __dirname + "/public/player-browse-tournament.html";
     res.sendFile(path);
