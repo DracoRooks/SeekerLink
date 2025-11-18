@@ -174,10 +174,11 @@ website.get("/player-profile", function(req, res){
 })
 // *********** GEN AI ***************
 async function genAIPrompt(imgurl) {
-    const myprompt = "Read the text on picture and tell all the information in adhaar card and give output STRICTLY in JSON format {adhaar_number:'', name:'', gender:'', dob: ''}. Dont give output as string."   
+    // const myprompt = "Read the text on picture and tell all the information in adhaar card and give output STRICTLY in JSON format {adhaar_number:'', name:'', gender:'', dob: ''}. Dont give output as string."   
+    const myprompt = "Read the text on picture and tell all the information in adhaar card and give output STRICTLY in JSON format {adhaar_number:'', name:'', gender:'', dob: ''}. Date of birth must be in YYYY-MM-DD format. Dont give output as string.";
     const imageResp = await fetch(imgurl).then((response) => response.arrayBuffer());
 
-    const result = await model.generateContent([{
+    const result = await genAIModel.generateContent([{
         inlineData: {
             data: Buffer.from(imageResp).toString("base64"),
             mimeType: "image/jpeg",
@@ -391,6 +392,44 @@ website.get("/player-fetch-filtered-tournaments", function(req, res){
         }
     })
 })
+website.post("/player-update-password", function(req, res) {
+    let email = req.body.email;
+    let oldPwd = req.body.oldPassword;
+    let newPwd = req.body.newPassword;
+
+    // 1. Verify the Old Password first
+    mySQLServer.query(
+        "SELECT * FROM users WHERE emailid = ? AND password = ?", 
+        [email, oldPwd], 
+        function(err, results) {
+            if (err) {
+                console.log("ERROR::CHECK_OLD_PWD: " + err);
+                res.status(500).send("Database Error");
+                return;
+            }
+
+            // If no user found with that email + password combo
+            if (results.length === 0) {
+                res.status(401).send("Incorrect current password!");
+                return;
+            }
+
+            // 2. If verification passed, Update to New Password
+            mySQLServer.query(
+                "UPDATE users SET password = ? WHERE emailid = ?", 
+                [newPwd, email], 
+                function(updateErr) {
+                    if (updateErr) {
+                        console.log("ERROR::UPDATE_PWD: " + updateErr);
+                        res.status(500).send("Failed to update password");
+                    } else {
+                        res.send("Password updated successfully");
+                    }
+                }
+            );
+        }
+    );
+});
 website.get("/admin-console", function(req, res){
     const path = __dirname + "/public/admin-console.html";
     res.sendFile(path);

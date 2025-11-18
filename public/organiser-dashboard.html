@@ -33,7 +33,8 @@
 
     <title>Organiser Dashboard</title>
   </head>
-  <body class="bg-light d-flex flex-column" style="min-height: 100vh;">
+  <body ng-app="OrganiserDashboardModule" ng-controller="OrganiserDashboardController"
+  class="bg-light d-flex flex-column" style="min-height: 100vh;">
     <header>
       <nav
         class="navbar navbar-expand-lg fixed-top shadow-sm bg-white"
@@ -91,7 +92,7 @@
                 <div class="card h-100">
                   <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Manage Tournaments link">
                   <div class="card-body">
-                    <h5 class="card-title">Manage Tournaments</h5>
+                    <h5 class="card-title">Tournaments History</h5>
                     <a href="/organiser-tournament-history" class="btn btn-dark">Manage</a>
                   </div>
                 </div>
@@ -113,51 +114,71 @@
 
       <!-- ********************************   ORGANISER SETTINGS MODAL  ******************************** -->
        <div class="modal fade" id="organiserSettingsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="organiserSettingsModalTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <form action="/organiser-settings">
-              <div class="modal-header">
-                <h5 class="modal-title" id="organiserSettingsModalLongTitle">Settings</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="mb-3">
-                  <label for="txtEmailSettingsOrganiser" class="form-label">Email:</label>
-                  <div class="input-group">
-                    <input type="text" class="form-control signup-modal-input emailValidate" id="txtEmailSignup" placeholder="example@gmail.com" aria-errormessage="email-validation-signup">
-                  </div>
-                  <div class="form-text" id="email-validation-signup"></div>
-                </div>
-                <div class="mb-3">
-                  <label for="txtPwdSignup1" class="form-label">Password:</label>
-                  <div class="input-group">
-                    <input type="password" class="form-control passwordValidate signup-modal-input" id="txtPwdSignup1" aria-errormessage="password1-validation-signup">
-                    <button class="btn btn-outline-secondary btn-toggle-password-signup" type="button" id="btn-toggle-password1-signup" aria-controls="txtPwdSignup1" aria-describedby="icon-toggle-password1-signup">
-                      <i class="fa-solid fa-eye" id="icon-toggle-password1-signup"></i>
-                    </button>
-                  </div>
-                  <div class="form-text" id="password1-validation-signup">We won't share your password!</div>
-                </div>
-                <div class="mb-3">
-                  <label for="txtPwdSignup2" class="form-label">Re-enter your password:</label>
-                  <div class="input-group">
-                    <input type="password" class="form-control passwordValidate signup-modal-input" id="txtPwdSignup2" aria-errormessage="password2-validation-signup">
-                    <button class="btn btn-outline-secondary btn-toggle-password-signup" type="button" id="btn-toggle-password2-signup" aria-controls="txtPwdSignup2" aria-describedby="icon-toggle-password2-signup">
-                      <i class="fa-solid fa-eye" id="icon-toggle-password2-signup"></i>
-                    </button>
-                  </div>
-                  <div class="form-text" id="password2-validation-signup"></div>
-                </div>
-              <div class="modal-footer">
-                <div class="d-grid col-md-10 mx-auto">
-                  <button type="button" class="btn btn-dark btn-center" id="AJAXSignup">Update</button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <h5 class="modal-title" id="organiserSettingsModalLongTitle">Account Settings</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+
+      <div class="modal-body">
+        
+        <form id="frmChangePassword">
+            <h6 class="fw-bold mb-3">Change Password</h6>
+            
+            <div class="mb-3">
+                <label for="txtOldPwd" class="form-label">Old Password</label>
+                <div class="input-group">
+                    <input type="password" class="form-control" id="txtOldPwd" placeholder="Current Password">
+                    <button class="btn btn-outline-secondary" type="button" ng-click="togglePassword('txtOldPwd', $event)">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="txtNewPwd" class="form-label">New Password</label>
+                <div class="input-group">
+                    <input type="password" class="form-control" id="txtNewPwd" placeholder="New Password">
+                    <button class="btn btn-outline-secondary" type="button" ng-click="togglePassword('txtNewPwd', $event)">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="txtConfirmNewPwd" class="form-label">Confirm New Password</label>
+                <div class="input-group">
+                    <input type="password" class="form-control" id="txtConfirmNewPwd" placeholder="Re-enter New Password">
+                    <button class="btn btn-outline-secondary" type="button" ng-click="togglePassword('txtConfirmNewPwd', $event)">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="d-grid">
+                <button type="button" class="btn btn-dark" id="btnUpdatePassword" ng-click="doUpdatePassword()">Update Password</button>
+            </div>
+        </form>
+
+        <hr class="my-4">
+
+        <div>
+            <h6 class="fw-bold text-danger mb-3">Danger Zone</h6>
+            <p class="small text-muted">Securely sign out of your account on this device.</p>
+            <div class="d-grid">
+                <button type="button" class="btn btn-danger" id="btnLogout" ng-click="doLogout()">
+                    <i class="fa-solid fa-right-from-bracket me-2"></i> Logout
+                </button>
+            </div>
+        </div>
+
+      </div>
+      
+      </div>
+  </div>
+</div>
     </main>
 
     <!-- FOOTER -->
