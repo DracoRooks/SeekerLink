@@ -214,27 +214,15 @@ website.post("/player-adhaar-reader", async function (req, resp) {
 // ************************************************
 website.post("/player-profile-savedata", async function(req, res) {
     
-    // ---------------------------------------------------------
-    // 1. SERVER-SIDE ENFORCEMENT (Validation)
-    // ---------------------------------------------------------
-    
-    // Check Text Fields
-    if (!req.body.txtEmailPlayerProfile || !req.body.txtAddress || !req.body.txtContact || !req.body.txtGame) {
-        return res.status(400).send("Error: Missing required text fields (Email, Address, Contact, or Game).");
-    }
-
-    // Check Files (Adhaar & Profile Pic are mandatory)
+    // Check Mandatory Fields (Profile Pic & Adhaar are mandatory in your form)
     if (!req.files || !req.files.fileAdhaar || !req.files.fileProfilePic) {
         return res.status(400).send("Error: Both Adhaar Card and Profile Picture are required.");
     }
 
-    // ---------------------------------------------------------
-    // 2. UPLOAD & PROCESSING
-    // ---------------------------------------------------------
-    
     let adhaarUrl = "";
     let profileUrl = "";
     
+    // Prepare data object
     let finalData = {
         name: req.body.txtName,
         dob: req.body.txtDob,
@@ -242,7 +230,7 @@ website.post("/player-profile-savedata", async function(req, res) {
     };
 
     try {
-        // A. Handle Adhaar
+        // 1. UPLOAD ADHAAR
         let adhaarFile = req.files.fileAdhaar;
         let adhaarPath = __dirname + "/public/users/" + adhaarFile.name;
         await adhaarFile.mv(adhaarPath);
@@ -251,21 +239,24 @@ website.post("/player-profile-savedata", async function(req, res) {
         adhaarUrl = adhaarResult.url;
         console.log("ADHAAR_URL: " + adhaarUrl);
 
-        // B. AI Processing (GenAI)
+        // 2. AI PROCESSING
         console.log("Analyzing Adhaar with GenAI...");
         try {
+            // Now 'model' will be defined if you added the initialization code above
             let aiData = await genAIPrompt(adhaarUrl);
             
-            // Merge AI data only if user left fields blank
+            // Only overwrite if user left fields blank
             if (!finalData.name && aiData.name) finalData.name = aiData.name;
             if (!finalData.gender && aiData.gender) finalData.gender = aiData.gender;
+            
+            // Ensure AI gives a valid date, otherwise keep what we have
             if (!finalData.dob && aiData.dob) finalData.dob = aiData.dob;
             
         } catch (aiError) {
             console.log("AI_ERROR (Proceeding with form data): " + aiError);
         }
 
-        // C. Handle Profile Pic
+        // 3. UPLOAD PROFILE PIC
         let profileFile = req.files.fileProfilePic;
         let profilePath = __dirname + "/public/users/" + profileFile.name;
         await profileFile.mv(profilePath);
@@ -274,9 +265,11 @@ website.post("/player-profile-savedata", async function(req, res) {
         profileUrl = profileResult.url;
         console.log("PROFILE_PIC_URL: " + profileUrl);
 
-        // ---------------------------------------------------------
-        // 3. DATABASE SAVE
-        // ---------------------------------------------------------
+        // 4. FIX DATE VALUE FOR MYSQL
+        // If dob is empty string "", convert it to null. MySQL loves null, hates "".
+        let dateForSQL = finalData.dob ? finalData.dob : null;
+
+        // 5. SAVE TO DB
         mySQLServer.query(
             "INSERT INTO players VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             [
@@ -284,7 +277,7 @@ website.post("/player-profile-savedata", async function(req, res) {
                 adhaarUrl,
                 profileUrl,
                 finalData.name,   
-                finalData.dob,    
+                dateForSQL,       // <--- USE THE FIXED DATE VARIABLE
                 finalData.gender, 
                 req.body.txtAddress,
                 req.body.txtContact,
@@ -304,7 +297,7 @@ website.post("/player-profile-savedata", async function(req, res) {
 
     } catch (err) {
         console.log("SERVER_ERROR: " + err);
-        res.status(500).send("Server Error during processing: " + err.message);
+        res.status(500).send("Server Error: " + err.message);
     }
 });
 website.get("/player-browse-tournament", function(req, res){

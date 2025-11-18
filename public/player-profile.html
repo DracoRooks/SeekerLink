@@ -80,7 +80,7 @@
               class="row g-4"
               method="post"
               enctype="multipart/form-data"
-              action="/player-profile-savedata"
+              ng-submit="fxSaveData();"
             >
               <div class="col-md-6">
                 <label for="txtEmailPlayerProfile" class="form-label fw-semibold">Email ID</label>
@@ -90,8 +90,7 @@
                     class="form-control"
                     id="txtEmailPlayerProfile"
                     name="txtEmailPlayerProfile"
-                    ng-model="player.emailId"
-                    placeholder="{{activeUserPlayerEmail}}"
+                    value="{{activeUserPlayerEmail}}"
                     readonly
                   />
                   <button type="button" class="btn btn-dark" ng-click="fetchPlayerData();">
@@ -113,11 +112,11 @@
               </div>
 
               <div class="col-md-6">
-                <label for="fileAdhaar" class="form-label fw-semibold">Upload Front of Adhaar Card</label>
-                <input class="form-control mb-3" type="file" id="fileAdhaar" name="fileAdhaar" onchange="angular.element(this).scope().previewAdhaar(this)">
+                <label for="fileAdhaar" class="form-label fw-semibold">Upload Front of Adhaar Card <span class="text-danger">*</span></label>
+                <input class="form-control mb-3" type="file" id="fileAdhaar" name="fileAdhaar" onchange="angular.element(this).scope().previewAdhaar(this)" required>
                 
-                <div class="border border-secondary rounded d-flex align-items-center justify-content-center" style="width: 150px; height: 150px; background-color: #f8f9fa;">
-                   <img id="prevAdhaar" src="" alt="preview" style="max-width: 100%; max-height: 100%; display: none;">
+                <div class="border border-secondary rounded d-flex align-items-center justify-content-center overflow-hidden bg-light" style="width: 150px; height: 150px;">
+                   <img id="prevAdhaar" src="" alt="preview" style="width: 100%; height: 100%; object-fit: contain; display: none;">
                    <span class="text-muted" id="adhaarPlaceholder">preview</span>
                 </div>
               </div>
@@ -126,9 +125,9 @@
                 <label for="fileProfilePic" class="form-label fw-semibold">Profile Pic <span class="text-danger">*</span></label>
                 <input class="form-control mb-3" type="file" id="fileProfilePic" name="fileProfilePic" onchange="angular.element(this).scope().previewProfile(this)" required>
                 
-                <div class="border border-secondary rounded d-flex align-items-center justify-content-center" style="width: 150px; height: 150px; background-color: #f8f9fa;">
-                    <img id="prevProfile" src="" alt="preview" style="max-width: 100%; max-height: 100%; display: none;">
-                    <span class="text-muted">preview</span>
+                <div class="border border-secondary rounded d-flex align-items-center justify-content-center overflow-hidden bg-light" style="width: 150px; height: 150px;">
+                    <img id="prevProfile" src="" alt="preview" style="width: 100%; height: 100%; object-fit: contain; display: none;">
+                    <span class="text-muted" id="profilePlaceholder">preview</span>
                 </div>
               </div>
 
