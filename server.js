@@ -192,7 +192,6 @@ async function genAIPrompt(imgurl) {
     return jsonData;
 
 }
-
 website.post("/player-adhaar-reader", async function (req, resp) {
     let fileName;
     if (req.files != null) {
@@ -213,6 +212,101 @@ website.post("/player-adhaar-reader", async function (req, resp) {
     }
 })
 // ************************************************
+website.post("/player-profile-savedata", async function(req, res) {
+    
+    // ---------------------------------------------------------
+    // 1. SERVER-SIDE ENFORCEMENT (Validation)
+    // ---------------------------------------------------------
+    
+    // Check Text Fields
+    if (!req.body.txtEmailPlayerProfile || !req.body.txtAddress || !req.body.txtContact || !req.body.txtGame) {
+        return res.status(400).send("Error: Missing required text fields (Email, Address, Contact, or Game).");
+    }
+
+    // Check Files (Adhaar & Profile Pic are mandatory)
+    if (!req.files || !req.files.fileAdhaar || !req.files.fileProfilePic) {
+        return res.status(400).send("Error: Both Adhaar Card and Profile Picture are required.");
+    }
+
+    // ---------------------------------------------------------
+    // 2. UPLOAD & PROCESSING
+    // ---------------------------------------------------------
+    
+    let adhaarUrl = "";
+    let profileUrl = "";
+    
+    let finalData = {
+        name: req.body.txtName,
+        dob: req.body.txtDob,
+        gender: req.body.selGender
+    };
+
+    try {
+        // A. Handle Adhaar
+        let adhaarFile = req.files.fileAdhaar;
+        let adhaarPath = __dirname + "/public/users/" + adhaarFile.name;
+        await adhaarFile.mv(adhaarPath);
+
+        let adhaarResult = await cloudinary.uploader.upload(adhaarPath);
+        adhaarUrl = adhaarResult.url;
+        console.log("ADHAAR_URL: " + adhaarUrl);
+
+        // B. AI Processing (GenAI)
+        console.log("Analyzing Adhaar with GenAI...");
+        try {
+            let aiData = await genAIPrompt(adhaarUrl);
+            
+            // Merge AI data only if user left fields blank
+            if (!finalData.name && aiData.name) finalData.name = aiData.name;
+            if (!finalData.gender && aiData.gender) finalData.gender = aiData.gender;
+            if (!finalData.dob && aiData.dob) finalData.dob = aiData.dob;
+            
+        } catch (aiError) {
+            console.log("AI_ERROR (Proceeding with form data): " + aiError);
+        }
+
+        // C. Handle Profile Pic
+        let profileFile = req.files.fileProfilePic;
+        let profilePath = __dirname + "/public/users/" + profileFile.name;
+        await profileFile.mv(profilePath);
+
+        let profileResult = await cloudinary.uploader.upload(profilePath);
+        profileUrl = profileResult.url;
+        console.log("PROFILE_PIC_URL: " + profileUrl);
+
+        // ---------------------------------------------------------
+        // 3. DATABASE SAVE
+        // ---------------------------------------------------------
+        mySQLServer.query(
+            "INSERT INTO players VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            [
+                req.body.txtEmailPlayerProfile,
+                adhaarUrl,
+                profileUrl,
+                finalData.name,   
+                finalData.dob,    
+                finalData.gender, 
+                req.body.txtAddress,
+                req.body.txtContact,
+                req.body.txtGame,
+                req.body.txtOtherInfo
+            ],
+            function(err) {
+                if (err) {
+                    console.log("ERROR::INSERT_PLAYER_DATA: " + err);
+                    res.status(500).send("Database Error: " + err.message);
+                } else {
+                    console.log("PLAYER_DATA saved successfully.");
+                    res.send("Player Profile Saved Successfully!"); 
+                }
+            }
+        );
+
+    } catch (err) {
+        console.log("SERVER_ERROR: " + err);
+        res.status(500).send("Server Error during processing: " + err.message);
+    }
+});
 website.get("/player-browse-tournament", function(req, res){
     const path = __dirname + "/public/player-browse-tournament.html";
     res.sendFile(path);

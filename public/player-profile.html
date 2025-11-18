@@ -91,38 +91,70 @@
                     id="txtEmailPlayerProfile"
                     name="txtEmailPlayerProfile"
                     ng-model="player.emailId"
-                    placeholder="example@email.com"
+                    placeholder="{{activeUserPlayerEmail}}"
+                    readonly
                   />
-                  <button type="button" class="btn btn-dark" ng-click="fetchPlayerData()">
+                  <button type="button" class="btn btn-dark" ng-click="fetchPlayerData();">
                     Get Data
                   </button>
                 </div>
               </div>
+              
               <div class="col-md-6">
-                 </div>
+                <label for="txtName" class="form-label fw-semibold">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="txtName"
+                  name="txtName"
+                  ng-model="player.name"
+                  placeholder="Full Name"
+                />
+              </div>
 
               <div class="col-md-6">
                 <label for="fileAdhaar" class="form-label fw-semibold">Upload Front of Adhaar Card</label>
                 <input class="form-control mb-3" type="file" id="fileAdhaar" name="fileAdhaar" onchange="angular.element(this).scope().previewAdhaar(this)">
                 
                 <div class="border border-secondary rounded d-flex align-items-center justify-content-center" style="width: 150px; height: 150px; background-color: #f8f9fa;">
-                   <img id="prevAdhaar" src="" alt="prev" style="max-width: 100%; max-height: 100%; display: none;">
-                   <span class="text-muted" id="adhaarPlaceholder">prev</span>
+                   <img id="prevAdhaar" src="" alt="preview" style="max-width: 100%; max-height: 100%; display: none;">
+                   <span class="text-muted" id="adhaarPlaceholder">preview</span>
                 </div>
               </div>
 
               <div class="col-md-6">
-                <label for="fileProfilePic" class="form-label fw-semibold">Profile Pic</label>
-                <input class="form-control mb-3" type="file" id="fileProfilePic" name="fileProfilePic" onchange="angular.element(this).scope().previewProfile(this)">
+                <label for="fileProfilePic" class="form-label fw-semibold">Profile Pic <span class="text-danger">*</span></label>
+                <input class="form-control mb-3" type="file" id="fileProfilePic" name="fileProfilePic" onchange="angular.element(this).scope().previewProfile(this)" required>
                 
                 <div class="border border-secondary rounded d-flex align-items-center justify-content-center" style="width: 150px; height: 150px; background-color: #f8f9fa;">
-                    <img id="prevProfile" src="" alt="prev" style="max-width: 100%; max-height: 100%; display: none;">
-                    <span class="text-muted">prev</span>
+                    <img id="prevProfile" src="" alt="preview" style="max-width: 100%; max-height: 100%; display: none;">
+                    <span class="text-muted">preview</span>
                 </div>
               </div>
 
               <div class="col-md-6">
-                <label for="txtAddress" class="form-label fw-semibold">Address</label>
+                <label for="txtDob" class="form-label fw-semibold">Date of Birth</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="txtDob"
+                  name="txtDob"
+                  ng-model="player.dob"
+                />
+              </div>
+
+              <div class="col-md-6">
+                <label for="selGender" class="form-label fw-semibold">Gender</label>
+                <select class="form-select" id="selGender" name="selGender" ng-model="player.gender">
+                  <option value="" selected>Choose...</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label for="txtAddress" class="form-label fw-semibold">Address <span class="text-danger">*</span></label>
                 <input
                   type="text"
                   class="form-control"
@@ -130,11 +162,12 @@
                   name="txtAddress"
                   ng-model="player.address"
                   placeholder="#Zone, Street No., Locality..."
+                  required
                 />
               </div>
 
               <div class="col-md-6">
-                <label for="txtContact" class="form-label fw-semibold">Contact Number</label>
+                <label for="txtContact" class="form-label fw-semibold">Contact Number <span class="text-danger">*</span></label>
                 <input
                   type="text"
                   class="form-control"
@@ -142,11 +175,12 @@
                   name="txtContact"
                   ng-model="player.contact"
                   placeholder="+91..."
+                  required
                 />
               </div>
 
-              <div class="col-md-6">
-                <label for="txtGame" class="form-label fw-semibold">Games U Play</label>
+              <div class="col-md-12">
+                <label for="txtGame" class="form-label fw-semibold">Games You Play <span class="text-danger">*</span></label>
                 <input
                   type="text"
                   class="form-control"
@@ -154,10 +188,11 @@
                   name="txtGame"
                   ng-model="player.game"
                   placeholder="Ex: Cricket, Football..."
+                  required
                 />
               </div>
 
-              <div class="col-md-6">
+              <div class="col-12">
                 <label for="txtOtherInfo" class="form-label fw-semibold">Other Info</label>
                 <textarea
                   class="form-control"
@@ -169,7 +204,7 @@
                 ></textarea>
               </div>
 
-              <div class="col-12 d-flex justify-content-center gap-3 mt-5 mb-3">
+              <div class="col-12 d-flex justify-content-center gap-3 mt-4 mb-3">
                 <button type="submit" class="btn btn-dark px-5">Upload Data</button>
                 <button type="button" class="btn btn-dark px-5" ng-click="modifyData()">Modify</button>
               </div>
